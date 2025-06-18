@@ -21,3 +21,6 @@ sqlparse==0.5.3 ; python_version >= "3.12" and python_version < "4.0" \
 tzdata==2025.2 ; python_version >= "3.12" and python_version < "4.0" and sys_platform == "win32" \
     --hash=sha256:1a403fada01ff9221ca8044d701868fa132215d84beb92242d9acd2147f667a8 \
     --hash=sha256:b60a638fcc0daffadf82fe0f57e53d06bdec2f36c4df66280ae79bce6bd6f2b9
+djangorestframework_simplejwt==5.5.0
+psycopg2==2.9.10
+pillow==11.2.1
