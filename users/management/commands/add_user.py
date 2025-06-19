@@ -5,7 +5,7 @@ from users.models import CustomUser
 
 class Command(BaseCommand):
     def handle(self, *args, **options):
-        """ Команда для создания Пользователя """
+        """Команда для создания Пользователя"""
 
         user = CustomUser.objects.create(email="admin@gmail.com")
         user.set_password("4988")

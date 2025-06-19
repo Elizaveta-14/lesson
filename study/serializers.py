@@ -2,10 +2,12 @@ from rest_framework import serializers
 
 from study.models import Course, Lesson, Subscription
 
+
 class LessonSerializers(serializers.ModelSerializer):
     class Meta:
         model = Lesson
         fields = "__all__"
+
 
 class SubscriptionSerializer(serializers.ModelSerializer):
     class Meta:
@@ -19,7 +21,6 @@ class CourseSerializers(serializers.ModelSerializer):
     class Meta:
         model = Course
         fields = "__all__"
-
 
 
 class CourseDetailSerializers(serializers.ModelSerializer):
@@ -51,4 +52,3 @@ class SubscriptionSerializer(serializers.ModelSerializer):
     class Meta:
         model = Subscription
         fields = ("sign_of_subscription",)
-
