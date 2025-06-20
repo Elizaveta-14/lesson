@@ -1,5 +1,6 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
+
 from study.models import Course, Lesson
 
 
@@ -51,13 +52,13 @@ class CustomUser(AbstractUser):
     REQUIRED_FIELDS = [
         "username",
     ]
+
     class Meta:
         verbose_name = "Пользователь"
         verbose_name_plural = "Пользователи"
         permissions = [
             ("can_block_user", "Блокировка пользователя"),
         ]
-
 
     def __str__(self):
         return self.email
