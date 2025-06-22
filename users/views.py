@@ -2,6 +2,8 @@ from rest_framework import filters, generics, viewsets
 from rest_framework.generics import (DestroyAPIView, RetrieveAPIView,
                                      UpdateAPIView)
 from rest_framework.permissions import AllowAny, IsAuthenticated
+from users.services import (create_stripe_price, create_stripe_product,
+                            create_stripe_session)
 
 from users.models import CustomUser, Payment
 from users.permissions import IsOwnerDRF
@@ -12,6 +14,14 @@ class PaymentCreateAPIView(generics.CreateAPIView):
     serializer_class = PaymentSerializers
     queryset = Payment.objects.all()
 
+    def perform_create(self, serializer):
+        payment = serializer.save(user=self.request.user)
+        stripe_product_id = create_stripe_product(payment)
+        price_id = create_stripe_price(payment, stripe_product_id)
+        session_id, payment_link = create_stripe_session(price_id)
+        payment.session_id = session_id
+        payment.link = payment_link
+        payment.save()
 
 class PaymentViewSet(viewsets.ModelViewSet):
     serializer_class = PaymentSerializers
